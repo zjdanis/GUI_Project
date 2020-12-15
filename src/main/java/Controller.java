@@ -222,7 +222,7 @@ public class Controller {
           state.setString(3, USERNAME);
 
           state.executeUpdate();
-          System.out.println("Employee added to EMPLOYEE table...");
+          System.out.println("Employee added");
         }
 
         String PASSWORD = reverseString(employee.password);
