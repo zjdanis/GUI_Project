@@ -77,15 +77,11 @@ public class Controller {
   }
 
   final String JDBC_DRIVER = "org.h2.Driver";
-  final String DB_URL = "jdbc:h2:./res/H2";
+  final String DB_URL = "jdbc:h2:./res/HR";
 
   //  Database credentials
   final String USER = "";
   final String PASS = "";
-
-  File password = new File("res/h2");
-  Scanner sc = new Scanner(password);
-  final String PASSWORD = sc.nextLine();
 
   /** Try and catch method that inserts a product into the database. */
   public void databaseConnection() {
@@ -147,7 +143,7 @@ public class Controller {
       Class.forName(JDBC_DRIVER);
 
       // Step 2: Open a Connection
-      conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
       System.out.println("You have connected to the database");
 
       // Step 3: Execute a Query
@@ -198,7 +194,7 @@ public class Controller {
       Class.forName(JDBC_DRIVER);
 
       // Step 2: Open a Connection
-      conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
       System.out.println("You have connected to the database");
 
       // Step 3: Execute a Query
@@ -266,9 +262,9 @@ public class Controller {
 
   /**
    * Records the production of the products.
-   * Try and catch that will insert the record of production. 
-   * 
-   * @param isRecorded determines if product was recorded 
+   * Try and catch that will insert the record of production.
+   *
+   * @param isRecorded determines if product was recorded
    */
   public void recordProduction(boolean isRecorded) {
     Connection conn = null;
@@ -279,7 +275,7 @@ public class Controller {
       Class.forName(JDBC_DRIVER);
 
       // Step 2: Open a Connection
-      conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
       System.out.println("You have connected to the database");
 
       // Step 3: Execute a Query
