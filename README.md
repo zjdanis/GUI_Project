@@ -1,1 +1,2 @@
 # GUI_Project
+The GUI project will load a popup window. The window will allow an employee to create an account with a username and password. The employee will be able to add products with their name, who manfuctured them, and what type of item it is. The employee will also be able to choose a product and how many of it and submit it for production. Finally, there will be a log of the products that have been produced. 
