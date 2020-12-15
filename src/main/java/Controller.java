@@ -1,7 +1,4 @@
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.sql.*;
-import java.util.Scanner;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -43,10 +40,7 @@ public class Controller {
 
   public Button addProd;
 
-  public Controller() throws FileNotFoundException {}
-
-  @FXML
-  void addProduct() {}
+  public Controller() {}
 
   ObservableList<String> produceObservableList = FXCollections.observableArrayList();
 
@@ -74,6 +68,11 @@ public class Controller {
     for (ItemType item : ItemType.values()) {
       choiceBox.getItems().add(item);
     }
+
+    prodTable.setCellValueFactory(new PropertyValueFactory<>("name"));
+    manufacturerTable.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
+    typeTable.setCellValueFactory(new PropertyValueFactory<>("type"));
+    tableView.setItems(productLine);
   }
 
   final String JDBC_DRIVER = "org.h2.Driver";
@@ -84,7 +83,7 @@ public class Controller {
   final String PASS = "";
 
   /** Try and catch method that inserts a product into the database. */
-  public void databaseConnection() {
+  public void addProduct() {
     Connection conn = null;
     Statement stmt = null;
 
@@ -134,9 +133,15 @@ public class Controller {
     } catch (ClassNotFoundException e) {
       e.printStackTrace();
     }
+  }
 
-    conn = null;
-    stmt = null;
+  /**
+   * Try and catch method that selects product 
+   */
+  public void selectProduct() {
+
+    Connection conn = null;
+    Statement stmt = null;
 
     try {
       // Step 1: Register JDBC Driver
@@ -153,11 +158,9 @@ public class Controller {
 
       ResultSet rs = stmt.executeQuery(sql);
 
-      prodTable.setCellValueFactory(new PropertyValueFactory<>("name"));
-      manufacturerTable.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
-      typeTable.setCellValueFactory(new PropertyValueFactory<>("type"));
-      tableView.setItems(productLine);
+      Widget whoops = new Widget(0, "name", "manufacturer", ItemType.VISUAL);
 
+      // change to call widget constructor
       while (rs.next()) {
         productLine.add(
             new Widget(
@@ -240,7 +243,9 @@ public class Controller {
     }
 
     try {
-      if (conn != null) conn.close();
+      if (conn != null){ 
+        conn.close();
+      }
 
     } catch (SQLException e) {
       e.printStackTrace();
@@ -261,8 +266,8 @@ public class Controller {
   }
 
   /**
-   * Records the production of the products.
-   * Try and catch that will insert the record of production.
+   * Records the production of the products. Try and catch that will insert the record of
+   * production.
    *
    * @param isRecorded determines if product was recorded
    */
@@ -329,7 +334,9 @@ public class Controller {
       e.printStackTrace();
     }
     try {
-      if (conn != null) conn.close();
+      if (conn != null) {
+        conn.close();
+        }
 
     } catch (SQLException e) {
       e.printStackTrace();
