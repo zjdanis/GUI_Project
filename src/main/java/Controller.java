@@ -158,9 +158,6 @@ public class Controller {
 
       ResultSet rs = stmt.executeQuery(sql);
 
-      Widget whoops = new Widget(0, "name", "manufacturer", ItemType.VISUAL);
-
-      // change to call widget constructor
       while (rs.next()) {
         productLine.add(
             new Widget(
