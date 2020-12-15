@@ -40,8 +40,6 @@ public class Controller {
 
   public Button addProd;
 
-  public Controller() {}
-
   ObservableList<String> produceObservableList = FXCollections.observableArrayList();
 
   @FXML private Label prodErrorMessage;
