@@ -87,9 +87,7 @@ public class Controller {
   Scanner sc = new Scanner(password);
   final String PASSWORD = sc.nextLine();
 
-  /**
-   *
-   */
+  /** Try and catch method that inserts a product into the database. */
   public void databaseConnection() {
     Connection conn = null;
     Statement stmt = null;
@@ -253,6 +251,12 @@ public class Controller {
     }
   }
 
+  /**
+   * Takes in the password that the employee entered and reverses it.
+   *
+   * @param pass password that was entered
+   * @return password
+   */
   public String reverseString(String pass) {
     if (pass.isEmpty()) {
       return pass;
@@ -260,7 +264,13 @@ public class Controller {
     return reverseString(pass.substring(1)) + pass.charAt(0);
   }
 
-  public void recordProduction(boolean isUpdate) {
+  /**
+   * Records the production of the products.
+   * Try and catch that will insert the record of production. 
+   * 
+   * @param isRecorded determines if product was recorded 
+   */
+  public void recordProduction(boolean isRecorded) {
     Connection conn = null;
     Statement stmt = null;
 
@@ -277,7 +287,7 @@ public class Controller {
       String sql;
 
       int productsProduced = 1;
-      if (isUpdate) {
+      if (isRecorded) {
         try {
           for (int i = 0; i < Integer.parseInt(comboBox.getValue()); i++) {
             sql =
