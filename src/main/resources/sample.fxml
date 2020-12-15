@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="666.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+
+    <TabPane layoutY="-5.0" prefHeight="481.0" prefWidth="666.0" tabClosingPolicy="UNAVAILABLE">
+        <Tab text="Employee">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <TextField fx:id="nameInput" layoutX="259.0" layoutY="86.0" promptText="First Last" />
+                <TextField fx:id="passwordInput" layoutX="259.0" layoutY="131.0" promptText="Password" />
+                <Text layoutX="254.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Account" wrappingWidth="158.43878173828125">
+                    <font>
+                        <Font size="22.0" />
+                    </font>
+                </Text>
+                <Button fx:id="newEmployee" layoutX="280.0" layoutY="201.0" mnemonicParsing="false" onAction="#createEmployee" prefHeight="25.0" prefWidth="107.0" text="Create Account" />
+                <Label fx:id="errorMessage" layoutX="242.0" layoutY="174.0" prefHeight="17.0" prefWidth="183.0" />
+            </AnchorPane>
+        </Tab>
+        <Tab text="Product Line">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@Style.css">
+                <GridPane layoutX="37.0" layoutY="28.0" prefHeight="93.0" prefWidth="526.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <TextField fx:id="productInput" promptText="Enter Product Name" stylesheets="@Style.css" GridPane.columnIndex="1" />
+                    <Label stylesheets="@Style.css" text="Product Name" />
+                    <Label stylesheets="@Style.css" text="Manufacturer" GridPane.rowIndex="1" />
+                    <TextField fx:id="manufacturerInput" promptText="Enter Manufacturer" stylesheets="@Style.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    <Label stylesheets="@Style.css" text="Item Type" GridPane.rowIndex="2" />
+                    <ChoiceBox fx:id="choiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                </GridPane>
+                <Button fx:id="addProd" blendMode="HARD_LIGHT" layoutX="292.0" layoutY="211.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="30.0" prefWidth="83.0" stylesheets="@Style.css" text="Add Product" AnchorPane.bottomAnchor="211.0" AnchorPane.topAnchor="211.0" />
+                <Label layoutX="273.0" layoutY="171.0" mouseTransparent="true" stylesheets="@Style.css" text="Existing Products" textAlignment="CENTER" underline="true">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Label>
+                <TableView fx:id="tableView" layoutX="104.0" layoutY="303.0" prefHeight="135.0" prefWidth="459.0" stylesheets="@Style.css">
+                    <columns>
+                        <TableColumn fx:id="prodTable" prefWidth="164.66668176651" text="Product" />
+                        <TableColumn fx:id="manufacturerTable" prefWidth="178.66664123535156" text="Manufacturer" />
+                        <TableColumn fx:id="typeTable" prefWidth="126.0" text="Type" />
+                    </columns>
+                </TableView>
+                <Label fx:id="productError" layoutX="300.0" layoutY="136.0" prefHeight="17.0" prefWidth="219.0" />
+            </AnchorPane>
+        </Tab>
+        <Tab text="Produce">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@Style.css">
+                <Label layoutX="291.0" layoutY="6.0" stylesheets="@Style.css" text="Choose Product" />
+                <ListView fx:id="displayProduct" layoutX="207.0" layoutY="40.0" prefHeight="280.0" prefWidth="252.0" stylesheets="@Style.css" />
+                <Label layoutX="289.0" layoutY="320.0" stylesheets="@Style.css" text="Choose Quantity" />
+                <ComboBox fx:id="comboBox" editable="true" layoutX="300.0" layoutY="337.0" prefHeight="25.0" prefWidth="67.0" stylesheets="@Style.css" />
+                <Button fx:id="recordProd" layoutX="276.0" layoutY="370.0" mnemonicParsing="false" onAction="#recordProduction" stylesheets="@Style.css" text="Record Production" />
+                <Label fx:id="prodErrorMessage" layoutX="247.0" layoutY="407.0" prefHeight="17.0" prefWidth="173.0" />
+            </AnchorPane>
+        </Tab>
+        <Tab text="Production Log">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@Style.css">
+                <TextArea fx:id="productionLog" editable="false" layoutX="109.0" layoutY="77.0" prefHeight="299.0" prefWidth="449.0" stylesheets="@Style.css" />
+            </AnchorPane>
+        </Tab>
+    </TabPane>
+</Pane>
